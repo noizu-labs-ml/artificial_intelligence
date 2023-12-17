@@ -1,3 +1,5 @@
+TODO: convert to ipnyb for equation/model showing. 
+
 Dynamic Model Tuning Based on Extended Input/Output Layer 
 ========================
 
