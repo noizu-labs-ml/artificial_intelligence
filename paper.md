@@ -14,7 +14,7 @@ include additional nodes designed to inject biases explicitly. These nodes are i
 zero-impact state and fine-tuned selectively to influence the model's behavior dynamically. 
 Theoretically formulated as:
 
-![\[ \text{For a given bias node } b_i: \left( \sum (0, \ldots, 0) \cdot w_i + b_i = 0 \right) \]](http://www.sciweavers.org/tex2img.php?eq=%5Ctext%7BFor%20a%20given%20bias%20node%20%7D%20b_i%3A%20%5Cleft%28%20%5Csum%20%280%2C%20%5Cldots%2C%200%29%20%5Ccdot%20w_i%20%2B%20b_i%20%3D%200%20%5Cright%29&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
+\[ \text{For a given bias node } b_i: \left( \sum (0, \ldots, 0) \cdot w_i + b_i = 0 \right) \]
 
 This configuration ensures that initially, the model's output remains unchanged. The fine-tuning 
 phase employs Low-Rank Adaptation methodology to adjust the weights of these extra bias 
@@ -123,15 +123,15 @@ To facilitate dynamic adjustments within a pretrained transformer model while ma
 original state's integrity, we implement a zero-input initialization approach. This setup involves 
 the addition of new input nodes arranged to have no initial impact on the model's output. This 
 is achieved by setting the values of these nodes to zero and adjusting the associated weights 
-and biases such that the output, ![\((\sum_{i=1}^{n} w_i \cdot input_i) + b_i\)](http://www.sciweavers.org/tex2img.php?eq=%28%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%20w_i%20%5Ccdot%20input_i%29%20%2B%20b_i&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=), remains zero.
+and biases such that the output, \((\sum_{i=1}^{n} w_i \cdot input_i) + b_i\), remains zero.
 
 The introduction of additional nodes requires careful calibration. Each node's weight is offset by 
 the corresponding bias such that the output is annulled when all additional inputs are zero, 
 following the relationship:
 
-![\[ \sum_{i=1}^{n} w_i = -b_i \]](http://www.sciweavers.org/tex2img.php?eq=%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%20w_i%20%3D%20-b_i&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
+\[ \sum_{i=1}^{n} w_i = -b_i \]
 
-where ![\( w_i \)](http://www.sciweavers.org/tex2img.php?eq=w_i&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=) is the weight for the ![\( i^{th} \)](http://www.sciweavers.org/tex2img.php?eq=i%5E%7Bth%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=) additional input and ![\( b_i \)](http://www.sciweavers.org/tex2img.php?eq=b_i&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=) is the bias for the node.
+where \( w_i \) is the weight for the \( i^{th} \) additional input and \( b_i \) is the bias for the node.
 
 The model's original state is thus preserved with the new setup, but with extended capability for 
 bias injection, providing a foundation for post-training adaptability. The process of integrating 
